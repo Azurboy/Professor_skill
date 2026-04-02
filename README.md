@@ -1,424 +1,318 @@
+<div align="center">
+
 # 🎓 导师 Skill
 
-> *那一天，人们回想起了被导师支配的恐惧。*
+**把导师蒸馏成 AI，随时获得他/她的学术指导**
 
-把你的导师**蒸馏成 AI Skill**，随时随地得到他/她的学术指导。
+*那一天，人们回想起了被导师支配的恐惧。*
 
-> 灵感来自 [前任.skill](https://github.com/therealXiaomanChu/ex-skill) 和 [同事.skill](https://github.com/titanwings/colleague-skill)，为学术导师量身定制。
+<br>
 
----
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Claude Code](https://img.shields.io/badge/Claude_Code-Skill-blue)](https://claude.ai/claude-code)
+[![Version](https://img.shields.io/badge/version-1.1.0-green)](https://github.com/Azurboy/Professor_skill)
 
-## 核心理念
+<br>
 
-这个 Skill 做的事很简单：**让你的导师活在 Claude Code 里**。
+灵感来自 [前任.skill](https://github.com/therealXiaomanChu/ex-skill) 与 [同事.skill](https://github.com/titanwings/colleague-skill)，  
+同是"蒸馏一个人"——这次蒸馏的是你的导师。
 
-不是机械地回复，而是用他/她**真实的学术风格、教学方式、研究立场**来给你建议。
-
-- 你有论文要写？`/mentor-zhang-san` 问一句，导师就以他/她的风格给你反馈
-- 卡在研究方向？导师根据他/她的**实际论文和研究理念**给你思路
-- 需要鼓励？用他/她**真实的性格**来激励你
-
----
-
-## 为什么需要它？
-
-| 场景 | 传统 AI | 导师 Skill |
-|------|--------|---------|
-| 写论文要反馈 | 万能回复，没特色 | 导师本人的风格和标准 |
-| 选研究方向 | "这两个都可以" | 基于导师的论文和立场 |
-| 被拒稿了 | 通用安慰语 | 导师真实的"失败观" |
-| 急需建议 | 等待邮件回复 | 秒速回复（你自己的导师 Bot） |
+</div>
 
 ---
 
-## 它做什么？
+## 它是什么
 
-### ✨ 自动采集学术数据
+不是一个通用的"AI 学术助手"。
 
-你只需说："我的导师是张三，清华大学"
+导师 Skill 会把你**某一位具体的导师**蒸馏成一个可复用的 Claude Code Skill。蒸馏之后，`/mentor-zhang-san` 回来的不是 Claude，是张三教授——用他/她真实的说话方式、学术立场、指导哲学来和你对话。
 
-Skill 会自动去爬：
-- 🔍 **Google Scholar** → 论文列表、被引次数、研究方向
-- 📖 **百度学术** → 中文论文、合作者、引用网络
-- 📚 **中国知网（CNKI）** → 学位论文、期刊论文
-- 🌐 **Google 搜索** → 个人主页、实验室网站、论坛讨论
-- 👥 **ORCID / ResearchGate** → 自述、项目、基金
+核心材料来自两个来源：
 
-**不用你手动搜集论文、整理简历、拷贝粘贴**——全自动。
+- **公开学术数据**：Google Scholar、百度学术、知网、个人主页——自动采集，你只需提供名字和学校
+- **聊天记录（可选）**：微信、邮件——从中提取他/她说话的"灵魂"
 
-### 📝 生成"真正的"导师形象
+---
 
-采集完数据后，Skill 会生成**三个部分**：
+## 和通用 AI 有什么区别
 
-**PART A：指导记录**
-- 你们一起经历过的研究课题
-- 导师给过你的关键建议
-- 对你的评价与期望
+| 场景 | 通用 AI 的回答 | 导师 Skill 的回答 |
+|------|--------------|----------------|
+| 论文 introduction 写法 | "清晰陈述问题、背景、贡献" | "你这句话太长了。先说你要解决什么问题，一句话。" |
+| 要不要用 Transformer | "各有优劣，取决于数据规模" | "小数据集上我不太相信 Transformer，跑个 baseline 再说" |
+| 被拒稿了怎么办 | "不要气馁，继续努力" | "reviewer comments 你看了吗？那才是最值钱的东西" |
+| 选研究方向 | "建议结合兴趣和市场需求" | "你想和谁合作？好的合作者比方向更重要" |
 
-**PART B：人物画像**
-- 他/她怎么说话（用词、口头禅、表情符号）
-- 他/她的教学哲学（直接还是温和？）
-- 他/她对失败、成功的态度
-- 他/她的"底线"（绝对不会做的事）
+---
 
-**PART C：学术画像**（这是独特之处！）
-- 代表作有哪些
-- 常用的学术术语和论证方式
-- 对某些研究方向的已知立场（比如："我不相信这个方法"）
-- 审稿/批改时关注什么
+## 快速开始
 
-### 🎯 随时激活你的导师
+### 安装
 
 ```bash
-/mentor-zhang-san
-我想用Transformer做few-shot learning，这个想法怎么样？
-```
-
-导师回复**不是 Claude 本人**，而是 **张三教授的声音**：
-
-> "Transformer 确实很强大，但在小数据集上，我们经常看到 CNN + 迁移学习表现更稳定。建议你跑个 baseline 对比一下。拿数据说话，这样你的选择才有说服力。"
-
----
-
-## 💬 怎么用？
-
-### 第一步：创建
-
-```bash
-/create-mentor
-```
-
-系统问你：
-1. **导师叫什么？在哪个学校？**（比如："张三，清华大学计算机系"）
-2. **你们什么关系？**（PhD导师 / 硕士导师 / 某门课的教授 / 其他）
-
-### 第二步：自动采集（自动进行）
-
-Skill 并行爬取 Google Scholar、百度学术、知网等，**你只需等待**。
-
-如果你有导师的 Google Scholar 主页 URL，直接粘贴会更快。
-
-### 第三步：可选补充（可跳过）
-
-- **选项 A**：粘贴微信/邮件对话 → 学导师的说话风格
-- **选项B**：手写几句对导师的描述 → 补充个性化细节
-- **选项 C**：跳过，就用自动采集的数据
-
-### 第四步：审核 + 生成
-
-Skill 展示生成的三部分，你可以修改，然后保存。
-
-### 第五步：激活！
-
-现在你有了自己的导师 Bot：
-
-```bash
-/mentor-zhang-san
-你好！我想请教一下...
-```
-
----
-
-## 📚 支持的命令
-
-| 命令 | 用途 |
-|------|------|
-| `/create-mentor` | 创建新的导师 |
-| `/list-mentors` | 列出所有导师 |
-| `/mentor-{名字}` | 和导师聊天 |
-| `/{名字}-history` | 查看指导记录 |
-| `/{名字}-persona` | 查看人物画像 |
-| `/{名字}-academic` | 查看学术画像 |
-| `/mentor-append {名字}` | 追加新的聊天记录或建议 |
-| `/mentor-retire {名字}` | 删除（会说一句感谢的话） |
-
----
-
-## 🎯 用途举例
-
-### 场景 1：论文反馈
-
-```
-/mentor-zhang-san
-
-我的论文 introduction 写好了，麻烦帮我看看。
-
----
-
-导师（AI）：
-[读你的段落]
-
-这一段写得清楚，逻辑也对。但这句话有点冗长——
-"我们解决的问题是因为现有的方法有以下几个问题..."
-可以更简洁。再者，你提到的 baseline 这里需要引用，不然读者会想"这是你自己的观点吗？"
-
-整体方向不错，继续！
-```
-
-### 场景 2：研究方向抉择
-
-```
-/mentor-jane
-
-我在 RL 和 Vision 两个方向之间摇摆不定，怎么选？
-
----
-
-导师（AI）：
-这取决于你的兴趣，但我可以分享一下我自己的想法。
-
-Vision 现在竞争很激烈，paper 特别多，想出新意很难。RL 虽然也热，但如果你能找到一个 specific domain（比如 robotics、game AI），反而更容易做出差异化的工作。
-
-问你自己：三年后，你想在哪个领域发表论文？更重要的是，**你想和谁合作**？好的 collaborator 比选择方向更重要。
-```
-
-### 场景 3：被拒稿了
-
-```
-/mentor-prof-smith
-
-我们的论文被 NeurIPS rejected 了。我真的很沮丧。
-
----
-
-导师（AI）：
-我很理解。我自己也被拒过不少次。
-
-但这里有个关键：你看了 reviewer comments 没？那些反馈都是金子。最好的论文往往来自一遍遍被拒，然后根据反馈改进。我的 XXX 这篇论文第一次投出去也被拒了，但 reviewer 指出的三个问题帮我们发现了真正的 insight。
-
-这一遍不行，下一遍会更好。坚持。
-```
-
----
-
-## 🌍 双语支持
-
-自动检测语言，用中文问就用中文回，用英文问就用英文回：
-
-```bash
-/mentor-zhang-san
-你好，我想讨论一下我的研究方向。
-```
-
-```bash
-/mentor-zhang-san
-Hi, I need feedback on my thesis proposal.
-```
-
-两种都流畅。
-
----
-
-## 📚 数据来源
-
-| 来源 | 覆盖范围 | 采集内容 |
-|------|--------|--------|
-| **Google Scholar** | 全球英文发表 | 论文、引用数、研究主题 |
-| **百度学术** | 中国学者 | 中文论文、协作网络 |
-| **知网（CNKI）** | 中国学位论文 + 期刊 | 学位论文、期刊论文、会议 |
-| **Google 搜索** | 全球公开网页 | 个人主页、实验室网站 |
-| **ORCID** | 注册研究者 | 自述、项目、资金 |
-| **大学教师目录** | 大学网站 | 职位、研究方向、联系方式 |
-
-### ✅ 隐私与伦理
-
-- **公开数据**：所有来源都是公开可访问的
-- **不违反爬虫协议**：尊重 robots.txt，有请求延迟
-- **善意使用**：这是用于学习和指导，不是冒充他人
-- **建议透露**：如果你用了，不妨告诉导师，他/她可能会觉得很有趣！
-
----
-
-## 🛠️ 爬虫工具
-
-### Python 版本（推荐）
-
-```bash
-python3 scraper.py "导师名字" "学校" \
-  "https://scholar.google.com/citations?user=abc123" \
-  output.json
-```
-
-自动并行爬取，生成结构化 JSON。
-
-### Bash 版本
-
-```bash
-bash scraper.sh "导师名字" "学校"
-```
-
-更轻量，无依赖。
-
----
-
-## 🌳 项目灵感
-
-这个项目站在两个杰出作品的肩膀上：
-
-### [前任.skill](https://github.com/therealXiaomanChu/ex-skill)
-- 率先探索了"蒸馏一个人成 Skill"的可能性
-- 创意的"让对方活在 AI 里"的概念
-- 二部分架构（关系记忆 + 人物画像）
-
-### [同事.skill](https://github.com/titanwings/colleague-skill)
-- 扩展到职场场景，解决机构知识流失
-- 多源数据整合（企业工具 + 手动上传）
-- 演化机制（可以不断完善 Skill）
-
-### 导师 Skill 的创新
-
-融合两者的精神，**针对学术场景创新**：
-- 🔍 **自动采集学术数据**：利用学者的公开数据（论文、引用、研究方向）
-- 📖 **学术画像**：新增了 PART C，捕捉导师的研究立场、常用术语、论证方式
-- 🌐 **多源学术数据库**：不只 Google Scholar，还支持百度学术、知网等中文学术资源
-
----
-
-## ⚙️ 技术细节
-
-### 工作流
-
-```
-用户运行 /create-mentor
-    ↓
-问 2 个问题（名字 + 学校）
-    ↓
-Python scraper 并行爬取 5+ 数据源
-    ↓
-解析并规范化成 JSON
-    ↓
-Claude 合成三部分（指导记录、人物画像、学术画像）
-    ↓
-生成 child SKILL.md + 元数据
-    ↓
-保存到 ./mentors/{slug}/
-    ↓
-用户调用 /mentor-{slug} → 激活导师 Bot
-```
-
-### 文件结构
-
-```
-mentors/zhang-san/
-├── history.md           # PART A：指导记录
-├── persona.md           # PART B：人物画像
-├── academic.md          # PART C：学术画像
-├── sources.json         # 采集源和时间戳
-└── SKILL.md             # 子 Skill（自动生成）
-```
-
----
-
-## 💡 使用建议
-
-### ✅ 最适合用在
-
-- 你在写论文，需要导师的风格反馈
-- 你在选研究方向，想听听导师的真实观点
-- 你需要长期的学术指导，但导师可能没那么多时间
-- 你想练习"和导师对话"之前的想法整理
-
-### ⚠️ 不适合用在
-
-- 替代真实导师的沟通（这个 Skill 是辅助，不是替代）
-- 做出重大决定**只基于** Skill 的建议（多源决策）
-- 任何违反学术诚实的事（这个 Skill 的"导师"也会反对）
-
----
-
-## 🔄 持续完善
-
-创建后，你还可以：
-
-### 追加新数据
-
-```bash
-/mentor-zhang-san-append
-```
-
-- 新增聊天记录 → 学导师的新表达方式
-- 新增论文信息 → 补充学术画像
-- 新增指导经历 → 更新 PART A
-
-### 实时纠偏
-
-```
-/mentor-zhang-san
-
-我觉得这个回答不太像我导师会说的...
-```
-
-系统会改进人物画像，你也可以选择是否保存。
-
----
-
-## 🚀 安装与开始
-
-### 方法 1：复制到本地
-
-```bash
-mkdir -p ~/.claude/skills/create-mentor
+# 克隆到本地 skill 目录
 git clone https://github.com/Azurboy/Professor_skill.git
-cp -r ./Professor_skill/* ~/.claude/skills/create-mentor/
-```
+cp -r Professor_skill ~/.claude/skills/create-mentor
 
-### 方法 2：用 Claude Code 的技能管理器
-
-```bash
+# 或使用 OpenClaw skills 管理器
 /skills-manager sync Azurboy/Professor_skill
 ```
 
-然后就可以用了：
+### 创建你的第一个导师
 
-```bash
+```
 /create-mentor
 ```
 
----
+**系统：** 你的导师叫什么？在哪个学校？
 
-## ❓ 常见问题
+**你：** 张三，某某大学
 
-**Q: 这个 Bot 会完全复制我导师吗？**
+**系统：** 你们是什么关系？
 
-A: 不会 100% 准确，但会捕捉他/她的**风格、价值观、立场**。用它来思考和头脑风暴，而不是当作"真理之源"。
+**你：** 硕士导师
 
-**Q: 导师会发现我在用这个吗？**
+**系统：** 好的，正在自动采集张三的学术公开数据...
+```
+✅ Google Scholar — 找到 42 篇论文，h-index: 18
+✅ 百度学术    — 找到 23 篇中文论文
+✅ 个人主页    — http://cs.xxx.edu.cn/~zhangsan/
+✅ ORCID       — 0000-0001-xxxx-xxxx
+```
+是否补充聊天记录？（A 微信/邮件 / B 手动描述 / C 跳过）
+```
 
-A: 它只在你的本地 Claude Code 里运行，不会上传任何地方。除非你主动分享，否则私密。
-
-**Q: 如果导师在 Google Scholar 上没有资料呢？**
-
-A: Skill 还会尝试百度学术、知网、Google 搜索、ORCID、大学主页。如果都找不到，你可以手动补充。
-
-**Q: 我能给多个导师创建 Skill 吗？**
-
-A: 当然！创建多次就行，会生成 `/mentor-alice`、`/mentor-bob` 等。
-
----
-
-## 📞 反馈与贡献
-
-- 🐛 发现 Bug？提 Issue
-- 💡 有新想法？PR 欢迎
-- 💬 想讨论功能？Discussions
+搞定。之后运行 `/mentor-zhang-san` 即可。
 
 ---
 
-## 📄 开源协议
+## 完整操作案例
 
-MIT License — 自由使用，保留署名。
+### 案例一：论文反馈
+
+```
+> /mentor-zhang-san
+
+你好，我的 introduction 写完了，帮我看看。
+
+[粘贴段落]
+
+"本研究旨在通过对社交媒体数据的多模态分析，
+探讨疫苗信息传播的平台差异性及其影响因素，
+以期为公共卫生传播策略提供理论依据与实践参考。"
+```
+
+**导师（张三）：**
+
+> 这句话太长了。一个句子里有三层意思，读者记不住。
+>
+> 试试这样拆：先说你发现了什么现象，再说你用什么方法，最后说意义。不要一上来就说"旨在"——先让读者知道问题在哪里。
+>
+> 还有——"以期为…提供理论依据与实践参考"这句话几乎每篇论文都有，删掉，留在 discussion 里说。
 
 ---
 
-## 🙏 致敬
+### 案例二：研究方向选择
 
-这个项目是对以下两个项目精神的继承和发展：
+```
+> /mentor-zhang-san
 
-- **[前任.skill](https://github.com/therealXiaomanChu/ex-skill)** by 真小满🧊 — "蒸馏一个人"的原创理念
-- **[同事.skill](https://github.com/titanwings/colleague-skill)** by titanwings — 职场场景的扩展和演化机制
+我在纠结用 LLM 做内容分析，还是用传统的编码方法。你怎么看？
+```
 
-感谢他们启发了这个项目的核心思想。
+**导师：**
+
+> 取决于你的 RQ 是什么。
+>
+> 如果你想解释"为什么"，传统编码更可靠，审稿人认。如果你在处理大规模数据，LLM 是你唯一的选项，但你需要认真做 validation。
+>
+> 你现在数据量大概多少？
 
 ---
 
-**为学生和导师的更好互动而生。** 🎓✨
+### 案例三：被拒稿后
+
+```
+> /mentor-zhang-san
+
+我们投 ICWSM 的那篇被拒了，三个 reviewer 都给了 reject。
+```
+
+**导师：**
+
+> 好，把 comments 发给我看看。
+>
+> 被拒不是问题，reviewer 说了什么才是问题。他们如果是在说"motivation 不清晰"，那是写作问题，好改。如果说"方法有根本性缺陷"，那要重新想。
+>
+> 先不要看分数，先看 Weakness 那一栏。
+
+---
+
+### 案例四：临近截止日
+
+```
+> /mentor-zhang-san
+
+还有 48 小时截稿，我的 related work 还没写完，experiment 有个结果还没出来。
+```
+
+**导师：**
+
+> experiment 那个结果出不来就先不要放，写"future work"。related work 现在先把你最核心的 5 篇写完，其他的截稿后补。
+>
+> 你现在最缺的是哪一段？
+
+---
+
+### 案例五：自动纠偏
+
+```
+> /mentor-zhang-san
+
+你刚才鼓励我说"加油你一定行！"——我导师不会这样说的。
+```
+
+**系统：**
+
+> 明白了。他实际更可能怎么说？
+
+**你：**
+
+> 他就说"继续"两个字，最多再加一句"这个方向是对的"。
+
+**系统：**
+
+> 已记录。更新 Layer 3（情感表达）——克制型，认可方式为一句话或两个字，不使用感叹号和激励语。是否保存到 persona.md？
+
+---
+
+## 三轨画像结构
+
+导师 Skill 生成三个文件，各司其职：
+
+```
+mentors/zhang-san/
+├── history.md      ← 你们的指导经历、关键对话（PART A）
+├── persona.md      ← 他/她的灵魂，5 层结构（PART B）
+├── academic.md     ← 论文、研究立场、审稿偏好（PART C）
+├── sources.json    ← 采集来源记录
+└── SKILL.md        ← /mentor-zhang-san 的完整脚本
+```
+
+### PART B 的 5 层灵魂结构
+
+学习自 [同事.skill](https://github.com/titanwings/colleague-skill) 的人物构建方式，从聊天记录里提取的不是"他是个好人"这种描述，而是有据可查的行为模式：
+
+| 层级 | 内容 | 示例 |
+|------|------|------|
+| **Layer 0** | 底线（永不违背） | "不会无原则鼓励；不替学生做决定" |
+| **Layer 1** | 语言与表达风格 | "惜字如金；反问式批评；不用感叹号" |
+| **Layer 2** | 教学哲学 | "苏格拉底式追问；数据说话" |
+| **Layer 3** | 情感表达 | "认可用一两个字；批评用反问" |
+| **Layer 4** | 人际边界 | "师生边界清晰；不主动聊私事" |
+| **Layer 5** | 决策模式 | "问题倒逼答案；让学生先做判断" |
+
+### 聊天记录提取逻辑
+
+从微信/邮件里，Skill 会找：
+
+- **标志性句式**：批评时用什么句式，肯定时用什么词
+- **情绪证据**：高压期语气有没有变化，表情符号频率
+- **知识取向**：主动展开什么话题，一笔带过什么
+- **边界信号**：几点回消息，是否聊非学术话题
+
+每条发现都附原文证据，不瞎猜。
+
+---
+
+## 命令速查
+
+| 命令 | 功能 |
+|------|------|
+| `/create-mentor` | 创建新导师 |
+| `/list-mentors` | 列出所有导师 |
+| `/mentor-{slug}` | 和导师对话 |
+| `/{slug}-persona` | 查看人物灵魂（5 层） |
+| `/{slug}-academic` | 查看学术画像 |
+| `/mentor-append {slug}` | 追加新材料（演化） |
+| `/rollback {slug}` | 回滚到上一版本 |
+| `/mentor-retire {slug}` | 删除（"感谢您的指引，一路顺风。"） |
+
+---
+
+## 与 OpenClaw 配合使用
+
+[OpenClaw](https://github.com/Enderfga/openclaw-claude-code) 是 Claude Code 的编排层，可以把导师 Skill 嵌入程序化工作流：
+
+```python
+import openclaw
+
+# 单导师审稿
+session = openclaw.create_session()
+session.send("/mentor-zhang-san 这段 related work 有没有遗漏重要文献？")
+
+# 多导师并行——同一份草稿，听取不同导师的意见
+team = openclaw.create_team([
+    "mentor-zhang-san",
+    "mentor-prof-smith"
+])
+opinions = team.parallel_send("这个研究设计有什么根本性问题？")
+print(opinions)  # 两位导师的不同角度
+
+# 批量处理：让导师逐章审稿
+chapters = ["introduction.md", "method.md", "results.md"]
+for chapter in chapters:
+    content = open(chapter).read()
+    session.send(f"/mentor-zhang-san 审阅这一章：\n{content}")
+```
+
+**典型场景：**
+- 论文不同章节分配给不同导师审
+- 深夜改稿时随时调用，不占用导师真实时间
+- 多位导师"圆桌"讨论研究决策
+
+---
+
+## 数据来源
+
+| 来源 | 覆盖 | 提取内容 |
+|------|------|---------|
+| Google Scholar | 全球英文学者 | 论文、h-index、研究方向 |
+| 百度学术 | 中国学者 | 中文论文、合作者 |
+| 知网（CNKI） | 中国大陆 | 学位论文、期刊 |
+| Google 搜索 | 公开网页 | 主页、实验室、采访 |
+| ORCID | 注册研究者 | 自述、项目 |
+| 大学主页 | 院校官网 | 职称、联系方式 |
+
+**伦理声明**：仅采集公开数据，尊重 robots.txt，善意使用。如果你用了，不妨告诉导师——他/她可能比你更感兴趣。
+
+---
+
+## 项目灵感
+
+这个项目站在两个作品的肩膀上：
+
+**[前任.skill](https://github.com/therealXiaomanChu/ex-skill)** by 真小满🧊
+> 率先提出"把一个人蒸馏成 Skill"——人物画像的两轨结构（关系记忆 + 人物性格）源自这里。
+
+**[同事.skill](https://github.com/titanwings/colleague-skill)** by titanwings
+> 扩展到职场场景，建立了人物灵魂的 5 层结构，以及从聊天记录中提取行为模式的方法论。
+
+导师 Skill 在此基础上加入了学术场景的第三轨（PART C 学术画像），以及对公开学术数据的自动采集。
+
+---
+
+## 贡献
+
+欢迎 PR 和 Issue：
+- 新增数据源（Semantic Scholar、AMiner？）
+- 优化聊天记录分析 prompt
+- 新增平台支持（飞书、钉钉自动采集）
+
+---
+
+<div align="center">
+
+MIT License · 为学生和导师的更好互动而生 🎓
+
+</div>
