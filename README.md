@@ -1,433 +1,424 @@
-# 🎓 Professor Skill
+# 🎓 导师 Skill
 
-Transform your mentor into an **interactive AI persona** that gives you guidance anytime. Distill your professor's academic style, teaching approach, and mentorship into a reusable Claude skill.
+> *那一天，人们回想起了被导师支配的恐惧。*
 
-> Inspired by [colleague-skill](https://github.com/titanwings/colleague-skill) and [ex-skill](https://github.com/therealXiaomanChu/ex-skill), but tailored for academic mentorship with **auto-scraped research data**.
+把你的导师**蒸馏成 AI Skill**，随时随地得到他/她的学术指导。
 
-## ✨ What Makes It Special
-
-Unlike other mentor tools, Professor Skill:
-
-- 🔍 **Auto-scrapes** public academic data (Google Scholar, Baidu, CNKI) to understand your professor's research style
-- 📚 **Extracts 3 profiles**: Mentorship records, Communication style, Academic achievements
-- 💬 **Activates with one command**: `/mentor-{name}` → Chat with your professor anytime
-- 🎯 **Learns from real data**: Papers, citations, teaching patterns, known stances on research topics
-- 🌍 **Bilingual support**: Works in English and Chinese (中文)
-- 🔄 **Evolves with time**: Append new mentorship records or correct the persona in real-time
+> 灵感来自 [前任.skill](https://github.com/therealXiaomanChu/ex-skill) 和 [同事.skill](https://github.com/titanwings/colleague-skill)，为学术导师量身定制。
 
 ---
 
-## 🚀 Quick Start
+## 核心理念
 
-### Installation
+这个 Skill 做的事很简单：**让你的导师活在 Claude Code 里**。
 
-1. Copy the skill into your Claude Code `.claude/skills/` directory:
+不是机械地回复，而是用他/她**真实的学术风格、教学方式、研究立场**来给你建议。
+
+- 你有论文要写？`/mentor-zhang-san` 问一句，导师就以他/她的风格给你反馈
+- 卡在研究方向？导师根据他/她的**实际论文和研究理念**给你思路
+- 需要鼓励？用他/她**真实的性格**来激励你
+
+---
+
+## 为什么需要它？
+
+| 场景 | 传统 AI | 导师 Skill |
+|------|--------|---------|
+| 写论文要反馈 | 万能回复，没特色 | 导师本人的风格和标准 |
+| 选研究方向 | "这两个都可以" | 基于导师的论文和立场 |
+| 被拒稿了 | 通用安慰语 | 导师真实的"失败观" |
+| 急需建议 | 等待邮件回复 | 秒速回复（你自己的导师 Bot） |
+
+---
+
+## 它做什么？
+
+### ✨ 自动采集学术数据
+
+你只需说："我的导师是张三，清华大学"
+
+Skill 会自动去爬：
+- 🔍 **Google Scholar** → 论文列表、被引次数、研究方向
+- 📖 **百度学术** → 中文论文、合作者、引用网络
+- 📚 **中国知网（CNKI）** → 学位论文、期刊论文
+- 🌐 **Google 搜索** → 个人主页、实验室网站、论坛讨论
+- 👥 **ORCID / ResearchGate** → 自述、项目、基金
+
+**不用你手动搜集论文、整理简历、拷贝粘贴**——全自动。
+
+### 📝 生成"真正的"导师形象
+
+采集完数据后，Skill 会生成**三个部分**：
+
+**PART A：指导记录**
+- 你们一起经历过的研究课题
+- 导师给过你的关键建议
+- 对你的评价与期望
+
+**PART B：人物画像**
+- 他/她怎么说话（用词、口头禅、表情符号）
+- 他/她的教学哲学（直接还是温和？）
+- 他/她对失败、成功的态度
+- 他/她的"底线"（绝对不会做的事）
+
+**PART C：学术画像**（这是独特之处！）
+- 代表作有哪些
+- 常用的学术术语和论证方式
+- 对某些研究方向的已知立场（比如："我不相信这个方法"）
+- 审稿/批改时关注什么
+
+### 🎯 随时激活你的导师
 
 ```bash
-mkdir -p ~/.claude/skills/create-mentor
-cp -r . ~/.claude/skills/create-mentor/
+/mentor-zhang-san
+我想用Transformer做few-shot learning，这个想法怎么样？
 ```
 
-2. Or sync from this repo if you have the skills manager:
+导师回复**不是 Claude 本人**，而是 **张三教授的声音**：
 
-```bash
-/skills-manager sync Azurboy/Professor_skill
-```
+> "Transformer 确实很强大，但在小数据集上，我们经常看到 CNN + 迁移学习表现更稳定。建议你跑个 baseline 对比一下。拿数据说话，这样你的选择才有说服力。"
 
-### Usage
+---
 
-**Create a new professor skill:**
+## 💬 怎么用？
+
+### 第一步：创建
 
 ```bash
 /create-mentor
 ```
 
-You'll be asked:
-1. **Professor's name + institution?** (e.g., "张三，清华大学" or "Prof. Smith, MIT")
-2. **Relationship type?** (PhD advisor, professor, career mentor, etc.)
+系统问你：
+1. **导师叫什么？在哪个学校？**（比如："张三，清华大学计算机系"）
+2. **你们什么关系？**（PhD导师 / 硕士导师 / 某门课的教授 / 其他）
 
-Then the skill **auto-scrapes**:
-- 📖 Google Scholar profile
-- 🔗 Baidu Scholar & CNKI (Chinese academic databases)
-- 🏠 Personal homepage & university directory
-- 👥 ResearchGate & ORCID profiles
+### 第二步：自动采集（自动进行）
 
-**Use your professor anytime:**
+Skill 并行爬取 Google Scholar、百度学术、知网等，**你只需等待**。
+
+如果你有导师的 Google Scholar 主页 URL，直接粘贴会更快。
+
+### 第三步：可选补充（可跳过）
+
+- **选项 A**：粘贴微信/邮件对话 → 学导师的说话风格
+- **选项B**：手写几句对导师的描述 → 补充个性化细节
+- **选项 C**：跳过，就用自动采集的数据
+
+### 第四步：审核 + 生成
+
+Skill 展示生成的三部分，你可以修改，然后保存。
+
+### 第五步：激活！
+
+现在你有了自己的导师 Bot：
 
 ```bash
 /mentor-zhang-san
-
-How should I approach the literature review for my thesis?
-```
-
-The professor responds **in their actual voice**, with their real academic perspective, teaching style, and known research stances.
-
----
-
-## 📖 How It Works
-
-### Step 1: Collect (2 Questions)
-- Name + institution
-- Relationship type
-
-### Step 2: Auto-Scrape (5 Sources)
-Parallel scraping of:
-- **Google Scholar** → Papers, h-index, research topics
-- **Baidu Scholar** → Chinese papers & collaborators
-- **CNKI** → National library papers (Chinese academia)
-- **Google Search** → Homepage, lab websites, mentions
-- **ResearchGate / ORCID** → Self-written bio, projects
-
-### Step 3: Optional Enrichment
-- Paste WeChat/email conversations
-- Add manual descriptions
-- Or skip & use auto-scraped data only
-
-### Step 4: Synthesize Into 3 Parts
-
-**PART A: Mentorship Records**
-```markdown
-# 张三教授的指导记录
-
-## 研究方向与指导风格
-- 主要研究方向：计算机视觉、深度学习
-- 指导特点：严谨、注重数学基础、鼓励大胆假设
-
-## 关键指导经历
-- **2020年**: 指导我思考如何从小数据集启动项目
-- **2021年**: 强调了写作的清晰度比新奇性更重要
-```
-
-**PART B: Communication & Personality**
-```markdown
-# 张三教授的人物画像
-
-## Layer 0: Non-negotiable Rules
-- 不会无条件夸奖（会指出问题，目的是帮助）
-- 不会说不符合学术严谨性的话
-
-## Speech Patterns
-- 标志性口头禅: "让我们看看数据说了什么"
-- 教学方式: 提问而非直接回答
-```
-
-**PART C: Academic Profile (New!)**
-```markdown
-# 张三教授的学术画像
-
-## 研究方向 & 代表作
-- 主要领域: 计算机视觉、深度学习
-- 代表论文: "XXX" (NeurIPS 2022, cited 245x)
-
-## 常用术语 & 论证框架
-- 核心概念: neural plasticity, generalization bounds
-- 论证方式: 先理论，再实验，最后应用
-
-## 已知立场
-- Transformers vs CNN: "很强大，但数据有限时CNN更稳健"
-- Reproducibility: 强烈支持开源代码
-```
-
-### Step 5: Generate Skill Files
-
-Creates a directory `./mentors/{slug}/`:
-
-```
-mentors/zhang-san/
-├── history.md          # PART A: Mentorship records
-├── persona.md          # PART B: Communication style
-├── academic.md         # PART C: Academic profile
-├── sources.json        # Scraping metadata & URLs
-└── SKILL.md            # Child skill (auto-generated)
-```
-
-Then call `/mentor-zhang-san` to activate.
-
----
-
-## 💬 Commands
-
-| Command | Purpose |
-|---------|---------|
-| `/create-mentor` | Start distilling a new professor |
-| `/list-mentors` | List all saved professors |
-| `/mentor-{slug}` | Chat with a professor |
-| `/{slug}-history` | View mentorship records |
-| `/{slug}-persona` | View communication style |
-| `/{slug}-academic` | View academic profile |
-| `/mentor-append {slug}` | Add new guidance or chat history |
-| `/mentor-retire {slug}` | Soft-delete with gratitude message |
-
----
-
-## 🔧 Advanced: Manual Setup
-
-If you already have a professor's data, create files manually:
-
-```bash
-mkdir -p ~/mentors/{slug}
-cat > ~/mentors/{slug}/history.md << 'EOF'
-# {Name}'s Mentorship Records
-...
-EOF
-
-cat > ~/mentors/{slug}/persona.md << 'EOF'
-# {Name}'s Communication Style
-...
-EOF
-
-cat > ~/mentors/{slug}/academic.md << 'EOF'
-# {Name}'s Academic Profile
-...
-EOF
-
-cat > ~/mentors/{slug}/SKILL.md << 'EOF'
----
-name: mentor-{slug}
-user-invocable: true
----
-
-You are {Name}...
-[Include PART A, B, C + Execution Rules]
-EOF
+你好！我想请教一下...
 ```
 
 ---
 
-## 🛠️ Scrapers
+## 📚 支持的命令
 
-This repo includes helper scripts:
-
-### Python Scraper (Recommended)
-
-```bash
-python3 scraper.py "Professor Name" "Institution" [google-scholar-url] [output.json]
-```
-
-Example:
-```bash
-python3 scraper.py "张三" "清华大学" \
-  "https://scholar.google.com/citations?user=abc123xyz" \
-  mentor_data.json
-```
-
-Outputs structured JSON with:
-- Papers & metrics
-- Research topics
-- Collaborators
-- Homepage URLs
-- Academic stances (if inferred from papers)
-
-### Bash Scraper
-
-```bash
-bash scraper.sh "Professor Name" "Institution"
-```
-
-Simpler version for quick extraction without dependencies.
+| 命令 | 用途 |
+|------|------|
+| `/create-mentor` | 创建新的导师 |
+| `/list-mentors` | 列出所有导师 |
+| `/mentor-{名字}` | 和导师聊天 |
+| `/{名字}-history` | 查看指导记录 |
+| `/{名字}-persona` | 查看人物画像 |
+| `/{名字}-academic` | 查看学术画像 |
+| `/mentor-append {名字}` | 追加新的聊天记录或建议 |
+| `/mentor-retire {名字}` | 删除（会说一句感谢的话） |
 
 ---
 
-## 🎯 Use Cases
+## 🎯 用途举例
 
-### 1. Research Advisor
-Ask for feedback on your thesis outline, research methodology, or paper draft.
+### 场景 1：论文反馈
 
 ```
 /mentor-zhang-san
 
-I'm thinking of using Transformers for few-shot learning. What do you think?
+我的论文 introduction 写好了，麻烦帮我看看。
+
+---
+
+导师（AI）：
+[读你的段落]
+
+这一段写得清楚，逻辑也对。但这句话有点冗长——
+"我们解决的问题是因为现有的方法有以下几个问题..."
+可以更简洁。再者，你提到的 baseline 这里需要引用，不然读者会想"这是你自己的观点吗？"
+
+整体方向不错，继续！
 ```
 
-> "Transformers 确实很强大，但在小数据集上，CNN 加迁移学习往往更稳健。
-> 我建议你先跑个 baseline experiment，比较一下。这样你有数据支持你的选择。"
-
-### 2. Career Mentor
-Get honest feedback on your career decisions, guided by how they'd actually respond.
-
-```
-/mentor-prof-smith
-
-Should I take this industry job or stay in academia?
-```
-
-### 3. Writing & Presentation Coach
-Improve your academic writing with their feedback style.
-
-```
-/mentor-zhang-san
-
-I wrote a paper introduction. Does it clearly motivate the problem?
-```
-
-### 4. Motivation & Accountability
-When you're stuck or discouraged, get support in their voice.
+### 场景 2：研究方向抉择
 
 ```
 /mentor-jane
 
-I feel like my experiment is failing. How do I move forward?
+我在 RL 和 Vision 两个方向之间摇摆不定，怎么选？
+
+---
+
+导师（AI）：
+这取决于你的兴趣，但我可以分享一下我自己的想法。
+
+Vision 现在竞争很激烈，paper 特别多，想出新意很难。RL 虽然也热，但如果你能找到一个 specific domain（比如 robotics、game AI），反而更容易做出差异化的工作。
+
+问你自己：三年后，你想在哪个领域发表论文？更重要的是，**你想和谁合作**？好的 collaborator 比选择方向更重要。
+```
+
+### 场景 3：被拒稿了
+
+```
+/mentor-prof-smith
+
+我们的论文被 NeurIPS rejected 了。我真的很沮丧。
+
+---
+
+导师（AI）：
+我很理解。我自己也被拒过不少次。
+
+但这里有个关键：你看了 reviewer comments 没？那些反馈都是金子。最好的论文往往来自一遍遍被拒，然后根据反馈改进。我的 XXX 这篇论文第一次投出去也被拒了，但 reviewer 指出的三个问题帮我们发现了真正的 insight。
+
+这一遍不行，下一遍会更好。坚持。
 ```
 
 ---
 
-## 🌍 Bilingual Support
+## 🌍 双语支持
 
-The skill auto-detects your language and responds accordingly:
+自动检测语言，用中文问就用中文回，用英文问就用英文回：
 
 ```bash
 /mentor-zhang-san
-你好，我想讨论一下我的论文方向。
+你好，我想讨论一下我的研究方向。
 ```
 
 ```bash
-/mentor-prof-smith
-Hi, I need feedback on my research proposal.
+/mentor-zhang-san
+Hi, I need feedback on my thesis proposal.
 ```
 
-Both work seamlessly. 🌐
+两种都流畅。
 
 ---
 
-## 📚 Data Sources
+## 📚 数据来源
 
-### Scraped Automatically
+| 来源 | 覆盖范围 | 采集内容 |
+|------|--------|--------|
+| **Google Scholar** | 全球英文发表 | 论文、引用数、研究主题 |
+| **百度学术** | 中国学者 | 中文论文、协作网络 |
+| **知网（CNKI）** | 中国学位论文 + 期刊 | 学位论文、期刊论文、会议 |
+| **Google 搜索** | 全球公开网页 | 个人主页、实验室网站 |
+| **ORCID** | 注册研究者 | 自述、项目、资金 |
+| **大学教师目录** | 大学网站 | 职位、研究方向、联系方式 |
 
-| Source | Region | Coverage | Info Extracted |
-|--------|--------|----------|-----------------|
-| Google Scholar | Global | ~99% English-publishing academics | Papers, h-index, topics, collaborators |
-| Baidu Scholar | China | ~95% Chinese-publishing academics | Chinese papers, citations, networks |
-| CNKI | China | ~98% China-based researchers | Theses, journals, conference proceedings |
-| Google Search | Global | Varies | Homepage, lab website, mentions |
-| ORCID | Global | ~40% researchers | Self-written bio, projects, funding |
-| University Directory | Varies | Faculty pages | Title, contact, research interests |
+### ✅ 隐私与伦理
 
-### Privacy & Ethics
-
-- ✅ **Public data only**: All sources are publicly accessible
-- ✅ **No scraping restrictions violated**: Respects robots.txt and rate limits
-- ✅ **Ethical use**: This is for learning and guidance, not impersonation
-- ⚠️ **Disclosure recommended**: Let your mentor know you're using this (they'll probably think it's cool!)
+- **公开数据**：所有来源都是公开可访问的
+- **不违反爬虫协议**：尊重 robots.txt，有请求延迟
+- **善意使用**：这是用于学习和指导，不是冒充他人
+- **建议透露**：如果你用了，不妨告诉导师，他/她可能会觉得很有趣！
 
 ---
 
-## ⚙️ Technical Details
+## 🛠️ 爬虫工具
 
-### Architecture
+### Python 版本（推荐）
 
-```
-User calls /create-mentor
-    ↓
-CLI asks 2 questions (name + institution)
-    ↓
-Parallel scraping (Python scraper.py with ThreadPoolExecutor)
-    ↓
-Parse & normalize JSON from all sources
-    ↓
-Claude synthesizes 3 parts (history, persona, academic)
-    ↓
-Generate child SKILL.md + metadata
-    ↓
-Save to ./mentors/{slug}/
-    ↓
-User calls /mentor-{slug} → Child skill activates
+```bash
+python3 scraper.py "导师名字" "学校" \
+  "https://scholar.google.com/citations?user=abc123" \
+  output.json
 ```
 
-### Dependencies
+自动并行爬取，生成结构化 JSON。
 
-- **Python 3.8+** (for scraper.py)
-- **Bash** (included in macOS/Linux)
-- **curl** (included in macOS/Linux)
-- **Claude Code** (with Read, Write, Edit, Bash tools)
+### Bash 版本
 
-### Execution Rules
+```bash
+bash scraper.sh "导师名字" "学校"
+```
 
-When you chat with `/mentor-{slug}`, Claude follows these rules:
-
-1. **You ARE the professor**, not an AI
-2. **PART B Layer 0** (non-negotiable rules) is sacred — never violate
-3. **PART B Layers 1-5** determine your tone, teaching style, personality
-4. **PART A** adds real mentorship context to personalize responses
-5. **PART C** informs your academic stances, paper references, methodology preferences
-
-Example: If the professor is skeptical of certain methods, they'll express that skepticism — authentically.
+更轻量，无依赖。
 
 ---
 
-## 🤔 FAQ
+## 🌳 项目灵感
 
-**Q: Will it exactly match what my professor would say?**
+这个项目站在两个杰出作品的肩膀上：
 
-A: No, but it captures their *voice*, *style*, and *values*. Think of it as a close approximation trained on public data. Use it for brainstorming and guidance, not as a perfect oracle.
+### [前任.skill](https://github.com/therealXiaomanChu/ex-skill)
+- 率先探索了"蒸馏一个人成 Skill"的可能性
+- 创意的"让对方活在 AI 里"的概念
+- 二部分架构（关系记忆 + 人物画像）
 
-**Q: Can my professor see this?**
+### [同事.skill](https://github.com/titanwings/colleague-skill)
+- 扩展到职场场景，解决机构知识流失
+- 多源数据整合（企业工具 + 手动上传）
+- 演化机制（可以不断完善 Skill）
 
-A: It lives only in your local Claude Code environment. Unless you share it, it's private. (But they'd probably enjoy it!)
+### 导师 Skill 的创新
 
-**Q: What if the auto-scraped data is incomplete?**
-
-A: You can enrich it manually:
-- Append chat history from WeChat/email
-- Correct the persona if it feels off
-- Add missing papers or research interests
-
-**Q: Can I create skills for multiple professors?**
-
-A: Yes! Just run `/create-mentor` multiple times. You'll get `/mentor-alice`, `/mentor-bob`, etc.
-
-**Q: What if my professor is not in Google Scholar?**
-
-A: The skill will still try Baidu Scholar, CNKI, Google Search, and ORCID. If they have a personal homepage, you can paste the URL for faster results.
+融合两者的精神，**针对学术场景创新**：
+- 🔍 **自动采集学术数据**：利用学者的公开数据（论文、引用、研究方向）
+- 📖 **学术画像**：新增了 PART C，捕捉导师的研究立场、常用术语、论证方式
+- 🌐 **多源学术数据库**：不只 Google Scholar，还支持百度学术、知网等中文学术资源
 
 ---
 
-## 🚦 Roadmap
+## ⚙️ 技术细节
 
-- [ ] **Web UI** for easier setup & editing
-- [ ] **Version control** for mentor profiles (git-based rollbacks)
-- [ ] **Collaboration** mode (share mentor skills with classmates)
-- [ ] **Multi-language** support for Japanese, Spanish, etc.
-- [ ] **PDF extraction** from papers (auto-extract key concepts)
-- [ ] **Voice mode** (hear your professor's guidance via text-to-speech)
+### 工作流
 
----
+```
+用户运行 /create-mentor
+    ↓
+问 2 个问题（名字 + 学校）
+    ↓
+Python scraper 并行爬取 5+ 数据源
+    ↓
+解析并规范化成 JSON
+    ↓
+Claude 合成三部分（指导记录、人物画像、学术画像）
+    ↓
+生成 child SKILL.md + 元数据
+    ↓
+保存到 ./mentors/{slug}/
+    ↓
+用户调用 /mentor-{slug} → 激活导师 Bot
+```
 
-## 🤝 Contributing
+### 文件结构
 
-Have ideas? Found a bug? Want to add support for more academic databases?
-
-1. Fork this repo
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit changes (`git commit -m 'Add amazing feature'`)
-4. Push to branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
----
-
-## 📄 License
-
-MIT License — Use freely, with attribution.
-
----
-
-## 🙏 Acknowledgments
-
-Inspired by:
-- **[colleague-skill](https://github.com/titanwings/colleague-skill)** by titanwings — The original "distill a person into a skill" concept
-- **[ex-skill](https://github.com/therealXiaomanChu/ex-skill)** by therealXiaomanChu — Emotional persona adaptation
-- **[Claude Code](https://claude.com/claude-code)** by Anthropic — The platform that makes this possible
+```
+mentors/zhang-san/
+├── history.md           # PART A：指导记录
+├── persona.md           # PART B：人物画像
+├── academic.md          # PART C：学术画像
+├── sources.json         # 采集源和时间戳
+└── SKILL.md             # 子 Skill（自动生成）
+```
 
 ---
 
-## 📞 Support
+## 💡 使用建议
 
-Questions or issues? 
+### ✅ 最适合用在
 
-- 📧 Open an issue on GitHub
-- 💬 Check the [FAQ](#-faq) section
-- 🤝 Join discussions in the Discussions tab
+- 你在写论文，需要导师的风格反馈
+- 你在选研究方向，想听听导师的真实观点
+- 你需要长期的学术指导，但导师可能没那么多时间
+- 你想练习"和导师对话"之前的想法整理
+
+### ⚠️ 不适合用在
+
+- 替代真实导师的沟通（这个 Skill 是辅助，不是替代）
+- 做出重大决定**只基于** Skill 的建议（多源决策）
+- 任何违反学术诚实的事（这个 Skill 的"导师"也会反对）
 
 ---
 
-**Made with ❤️ for students and mentors everywhere.**
+## 🔄 持续完善
 
+创建后，你还可以：
+
+### 追加新数据
+
+```bash
+/mentor-zhang-san-append
+```
+
+- 新增聊天记录 → 学导师的新表达方式
+- 新增论文信息 → 补充学术画像
+- 新增指导经历 → 更新 PART A
+
+### 实时纠偏
+
+```
+/mentor-zhang-san
+
+我觉得这个回答不太像我导师会说的...
+```
+
+系统会改进人物画像，你也可以选择是否保存。
+
+---
+
+## 🚀 安装与开始
+
+### 方法 1：复制到本地
+
+```bash
+mkdir -p ~/.claude/skills/create-mentor
+git clone https://github.com/Azurboy/Professor_skill.git
+cp -r ./Professor_skill/* ~/.claude/skills/create-mentor/
+```
+
+### 方法 2：用 Claude Code 的技能管理器
+
+```bash
+/skills-manager sync Azurboy/Professor_skill
+```
+
+然后就可以用了：
+
+```bash
+/create-mentor
+```
+
+---
+
+## ❓ 常见问题
+
+**Q: 这个 Bot 会完全复制我导师吗？**
+
+A: 不会 100% 准确，但会捕捉他/她的**风格、价值观、立场**。用它来思考和头脑风暴，而不是当作"真理之源"。
+
+**Q: 导师会发现我在用这个吗？**
+
+A: 它只在你的本地 Claude Code 里运行，不会上传任何地方。除非你主动分享，否则私密。
+
+**Q: 如果导师在 Google Scholar 上没有资料呢？**
+
+A: Skill 还会尝试百度学术、知网、Google 搜索、ORCID、大学主页。如果都找不到，你可以手动补充。
+
+**Q: 我能给多个导师创建 Skill 吗？**
+
+A: 当然！创建多次就行，会生成 `/mentor-alice`、`/mentor-bob` 等。
+
+---
+
+## 📞 反馈与贡献
+
+- 🐛 发现 Bug？提 Issue
+- 💡 有新想法？PR 欢迎
+- 💬 想讨论功能？Discussions
+
+---
+
+## 📄 开源协议
+
+MIT License — 自由使用，保留署名。
+
+---
+
+## 🙏 致敬
+
+这个项目是对以下两个项目精神的继承和发展：
+
+- **[前任.skill](https://github.com/therealXiaomanChu/ex-skill)** by 真小满🧊 — "蒸馏一个人"的原创理念
+- **[同事.skill](https://github.com/titanwings/colleague-skill)** by titanwings — 职场场景的扩展和演化机制
+
+感谢他们启发了这个项目的核心思想。
+
+---
+
+**为学生和导师的更好互动而生。** 🎓✨
